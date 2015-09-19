@@ -1,1 +1,6 @@
 *.pyc
+# Python eggs
+*.egg
+*.egg-info
+# Virtualenvs
+*.venv

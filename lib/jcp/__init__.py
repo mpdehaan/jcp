@@ -12,17 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import argparse
-import traceback
 import os
 import yaml
-import jinja2 
+import jinja2
+
 
 class JCopyException(Exception):
     pass
 
-class JCopy(object):
 
+class JCopy(object):
     def __init__(self, answers=None):
         self.answers = answers
 
@@ -37,21 +36,22 @@ class JCopy(object):
         answers = self.answers
         if not os.path.exists(answers):
             raise JCopyException("%s does not exist" % answers)
-	answer_data = open(answers).read()
+        answer_data = open(answers).read()
         try:
-	   answer_data = yaml.load(answer_data)
+            answer_data = yaml.load(answer_data)
         except Exception, e:
             raise JCopyException(str(e))
-	if not type(answer_data) == dict:
-	    raise JCopyException("expecting %s to describe a YAML dictionary" % answers)
+
+        if not type(answer_data) == dict:
+            raise JCopyException("expecting %s to describe a YAML dictionary" % answers)
 
         # verify the input file exists
         if not os.path.exists(input):
             raise JCopyException("%s does not exist" % input)
-        
-	# prep the template engine
+
+            # prep the template engine
         loader = jinja2.FileSystemLoader(searchpath="/")
-	jenv = jinja2.Environment(loader=loader, undefined=jinja2.StrictUndefined)
+        jenv = jinja2.Environment(loader=loader, undefined=jinja2.StrictUndefined)
         template = jenv.get_template(input)
 
         # render and write the template
@@ -60,6 +60,3 @@ class JCopy(object):
             fh.write(contents)
 
         return 0
-
-
-
