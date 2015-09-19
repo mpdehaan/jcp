@@ -15,6 +15,7 @@
 import os
 import yaml
 import jinja2
+import sys
 
 
 class JCopyException(Exception):
@@ -25,13 +26,7 @@ class JCopy(object):
     def __init__(self, answers=None):
         self.answers = answers
 
-    def copy(self, input, output):
-
-        # verify the output file directory exists, if not, make it
-        dirname = os.path.dirname(os.path.abspath(output))
-        if not os.path.exists(dirname):
-            os.makedirs(dirname)
-
+    def write(self, input, output_stream):
         # verify the answers file exists and read it
         answers = self.answers
         if not os.path.exists(answers):
@@ -56,7 +51,21 @@ class JCopy(object):
 
         # render and write the template
         contents = template.render(**answer_data)
-        with open(output, "w") as fh:
-            fh.write(contents)
+        output_stream.write(contents)
 
         return 0
+
+    def copy(self, input, output):
+        if output:
+            # verify the output file directory exists, if not, make it
+            dirname = os.path.dirname(os.path.abspath(output))
+            if not os.path.exists(dirname):
+                os.makedirs(dirname)
+
+            with open(output, "w") as fh:
+                result = self.write(input, fh)
+        else:
+            # No output path specified, let's write to stdout
+            result = self.write(input, sys.stdout)
+
+        return result

@@ -18,7 +18,7 @@ import argparse
 import sys
 from jcp import JCopy, JCopyException
 
-DESC='''
+DESC = '''
 jcp is a template aware copy program
 '''
 
@@ -30,7 +30,7 @@ parser = argparse.ArgumentParser(
 # may support other template engines later, want to add --engine?  Send me a patch!
 parser.add_argument("--input", required=True, help="input template filename (jinja2 format)")
 # would be nice to dump to stdout if no --output parameter?  Send me a patch!
-parser.add_argument("--output", required=True, help="output filename")
+parser.add_argument("--output", help="output filename (output to stdout if not specified)")
 # want to support other formats?  Send me a patch!
 parser.add_argument("--answers", required=True, help="answers filename (YAML or JSON)")
 
@@ -43,5 +43,3 @@ try:
 except JCopyException, jce:
     print jce.message
     sys.exit(1)
-
-
