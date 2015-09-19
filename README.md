@@ -24,7 +24,12 @@ Installation
 Usage
 =====
 
+The following example uses a template file, 'foo.conf.j2' in Jinja2 format, feeds in variables from 'answers.yml' and
+saves the results in '/etc/foo.conf':
+
     jcp --input foo.conf.j2 --answers answers.yml --output /etc/foo.conf
+
+Ok, that was easy.  Currently there aren't any more flags than that.  That's it!
 
 Jinja2
 ======
@@ -54,7 +59,7 @@ Ideas
 Possibly good pull requests for unimplemented features:
 
    * If no "--output" parameter, dump to stdout
-   * Support a "--engine" parameter to use things other than Jinja2
+   * Support a "--engine" parameter to use things other than Jinja2 (anything Python goes, shelling out to ruby for erb is cool too, I don't care!).  Actually this should probably go by the file extension and just default to Jinja, and be explicit only when --engine is specified.
    * Support other important flags from coreutils cp, if any are desired.
    * Support extra variables from the command line via --vars "key1=value1 key2=value2"
    * Python 3 compliance
