@@ -28,9 +28,9 @@ class JCopy(object):
     def copy(self, input, output):
 
         # verify the output file directory exists, if not, make it
-        basename = os.path.basename(output)
-        if not os.path.exists(basename):
-            os.makedirs(basename)
+        dirname = os.path.dirname(os.path.abspath(output))
+        if not os.path.exists(dirname):
+            os.makedirs(dirname)
 
         # verify the answers file exists and read it
         answers = self.answers
@@ -52,7 +52,7 @@ class JCopy(object):
             # prep the template engine
         loader = jinja2.FileSystemLoader(searchpath="/")
         jenv = jinja2.Environment(loader=loader, undefined=jinja2.StrictUndefined)
-        template = jenv.get_template(input)
+        template = jenv.get_template(os.path.abspath(input))
 
         # render and write the template
         contents = template.render(**answer_data)
