@@ -11,7 +11,7 @@ If you are doing immutable systems builds, you might also be interested in http:
 Installation
 ============
 
-    pip install template-copy
+    pip install jcp
 
 Usage
 =====
