@@ -22,7 +22,7 @@ Installation
 Usage
 =====
 
-    jcp --input foo.conf.j2 --data answers.yml --output /etc/foo.conf
+    jcp --input foo.conf.j2 --answers answers.yml --output /etc/foo.conf
 
 Ideas
 =====
