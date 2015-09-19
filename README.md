@@ -58,10 +58,12 @@ Ideas
 
 Possibly good pull requests for unimplemented features:
 
-   * If no "--output" parameter, dump to stdout
-   * Support a "--engine" parameter to use things other than Jinja2 (anything Python goes, shelling out to ruby for erb is cool too, I don't care!).  Actually this should probably go by the file extension and just default to Jinja, and be explicit only when --engine is specified.
+   * Allow multiple --answer parameters (and pass this as an array to the JCopy class).  If any parameters are an array, read all YAML or JSON files in the directory to support conf.d directories.  Allow filesystem globs via fnmatch.
+   * If no "--output" parameter, dump to stdout instead.
+   * Support an "--engine" parameter to use things other than Jinja2 (anything Python goes, shelling out to ruby for erb is cool too, I don't care!).  Actually this should probably go by the file extension and just default to Jinja, and be explicit only when --engine is specified.
    * Support other important flags from coreutils cp, if any are desired.
    * Support extra variables from the command line via --vars "key1=value1 key2=value2"
+   * Basic unit tests using input files in the test/ directory, and shelling out to the binary in scripts/
    * Python 3 compliance
 
 License
