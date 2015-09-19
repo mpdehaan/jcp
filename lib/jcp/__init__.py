@@ -66,6 +66,7 @@ class JCopy(object):
                 result = self.write(input, fh)
         else:
             # No output path specified, let's write to stdout
-            result = self.write(input, sys.stdout)
+            result = self.write(input, sys.stdout) 
+            print ""
 
         return result
