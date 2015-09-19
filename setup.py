@@ -5,12 +5,12 @@ import sys
 
 from setuptools import setup, find_packages
 
-setup(name='tcopy',
-      version="0.0.11",
+setup(name='jcp',
+      version="0.1",
       description='Template aware copy tool.',
       author='Michael DeHaan',
       author_email='michael.dehaan@gmail.com',
-      url='http://github.com/mpdehaan/tcopy/',
+      url='http://github.com/mpdehaan/jcp/',
       license='Apache2',
       install_requires=['jinja2'],
       package_dir={ '': 'lib' },
@@ -18,7 +18,7 @@ setup(name='tcopy',
       classifiers=[
       ],
       scripts=[
-         'scripts/tcopy',
+         'scripts/jcp',
       ],
       data_files=[
       ],

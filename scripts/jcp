@@ -16,23 +16,31 @@
 
 import argparse
 import sys
-from tcopy import TCopy, TCopyException
+from jcp import JCopy, JCopyException
 
-parser = argparse.ArgumentParser()
+DESC='''
+jcp is a template aware copy program
+'''
+
+parser = argparse.ArgumentParser(
+    prog='jcp',
+    description=DESC
+)
 
 # may support other template engines later, want to add --engine?  Send me a patch!
-parser.add_argument("--input", help="input template filename (jinja2 format)")
+parser.add_argument("--input", required=True, help="input template filename (jinja2 format)")
 # would be nice to dump to stdout if no --output parameter?  Send me a patch!
-parser.add_argument("--output", help="output filename")
+parser.add_argument("--output", required=True, help="output filename")
 # want to support other formats?  Send me a patch!
-parser.add_argument("--answers", help="answers filename (YAML or JSON)")
+parser.add_argument("--answers", required=True, help="answers filename (YAML or JSON)")
 
 args = parser.parse_args()
 
 try:
-    grand_arbiter_of_copying = TCopy(args.answers)
+
+    grand_arbiter_of_copying = JCopy(args.answers)
     rc = grand_arbiter_of_copying.copy(args.input, args.output)
-except TCopyException, tce:
+except JCopyException, tce:
     print tce.message
     sys.exit(1)
 

@@ -18,10 +18,10 @@ import os
 import yaml
 import jinja2 
 
-class TCopyException(Exception):
+class JCopyException(Exception):
     pass
 
-class TCopy(object):
+class JCopy(object):
 
     def __init__(self, answers=None):
         self.answers = answers
@@ -36,18 +36,18 @@ class TCopy(object):
         # verify the answers file exists and read it
         answers = self.answers
         if not os.path.exists(answers):
-            raise TCopyException("%s does not exist" % answers)
+            raise JCopyException("%s does not exist" % answers)
 	answer_data = open(answers).read()
         try:
 	   answer_data = yaml.load(answer_data)
         except Exception, e:
-            raise TCopyException(str(e))
+            raise JCopyException(str(e))
 	if not type(answer_data) == dict:
-	    raise TCopyException("expecting %s to describe a YAML dictionary" % answers)
+	    raise JCopyException("expecting %s to describe a YAML dictionary" % answers)
 
         # verify the input file exists
         if not os.path.exists(input):
-            raise TCopyException("%s does not exist" % input)
+            raise JCopyException("%s does not exist" % input)
         
 	# prep the template engine
         loader = jinja2.FileSystemLoader(searchpath="/")
