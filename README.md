@@ -26,6 +26,28 @@ Usage
 
     jcp --input foo.conf.j2 --answers answers.yml --output /etc/foo.conf
 
+Jinja2
+======
+
+For how Jinja2 templates work, I recommend the template engine documentation at http://jinja.pocoo.org/docs/dev/templates/.
+
+Assume answers.yml looked like this:
+
+    ---
+    dog: fido
+    cat: delicious
+
+Here's a really basic example of an input file.
+
+    My dog is named {{ dog }} and the cat is {{ cat }}.
+    
+The output file would look like:
+
+    My dog is named fido and the cat is delicious.
+    
+Of course, most likely  you're using this for config files. If you want more, read the Jinja2 docs.  It's easy, and it does
+if conditionals, loops, and all sorts of nice things.
+    
 Ideas
 =====
 
