@@ -40,8 +40,8 @@ try:
 
     grand_arbiter_of_copying = JCopy(args.answers)
     rc = grand_arbiter_of_copying.copy(args.input, args.output)
-except JCopyException, tce:
-    print tce.message
+except JCopyException, jce:
+    print jce.message
     sys.exit(1)
 
 
